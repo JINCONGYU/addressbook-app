@@ -26,6 +26,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/circlebackground"/>
+        android:background="@drawable/circlebackground"
+        android:id="@+id/student_new_btn"/>
 
 </RelativeLayout>

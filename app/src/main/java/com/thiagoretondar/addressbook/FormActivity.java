@@ -5,9 +5,14 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import java.util.zip.Inflater;
 
 public class FormActivity extends AppCompatActivity {
 
@@ -27,15 +32,25 @@ public class FormActivity extends AppCompatActivity {
             }
         });
 
-        Button saveButton = (Button) findViewById(R.id.form_btn_save);
-
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(FormActivity.this, "Save Button Clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_form, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_form_ok:
+                Toast.makeText(FormActivity.this, "Save Button Clicked", Toast.LENGTH_SHORT).show();
+                finish();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

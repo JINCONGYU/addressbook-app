@@ -58,12 +58,6 @@
             android:numStars="5"
             android:id="@+id/form_rating" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Save"
-            android:id="@+id/form_btn_save" />
-
     </LinearLayout>
 
 </ScrollView>
