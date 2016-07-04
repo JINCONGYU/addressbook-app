@@ -17,44 +17,52 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Firstname" />
+            android:hint="Firstname"
+            android:id="@+id/form_firstname" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Lastname" />
+            android:hint="Lastname"
+            android:id="@+id/form_lastname" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nickname" />
+            android:hint="Nickname"
+            android:id="@+id/form_nickname" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Address" />r
+            android:hint="Address"
+            android:id="@+id/form_address" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Phone" />
+            android:hint="Phone"
+            android:id="@+id/form_phone" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Website" />
+            android:hint="Website"
+            android:id="@+id/form_website" />
 
         <RatingBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:max="10"
-            android:numStars="5" />
+            android:numStars="5"
+            android:id="@+id/form_rating" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save" />
+            android:text="Save"
+            android:id="@+id/form_btn_save" />
 
     </LinearLayout>
 
