@@ -9,6 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.thiagoretondar.addressbook.dao.StudentDao;
+import com.thiagoretondar.addressbook.model.Student;
+
+import java.util.List;
+
 public class StudentListActivity extends AppCompatActivity {
 
     @Override
@@ -17,22 +22,6 @@ public class StudentListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_student_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
-        String[] students = {"Thiago", "Tiffany", "Felipe", "Paulo", "Thiago", "Tiffany", "Felipe",
-                "Paulo", "Thiago", "Tiffany", "Felipe", "Paulo", "Thiago", "Tiffany", "Felipe", "Paulo"};
-
-        ListView studentList = (ListView) findViewById(R.id.student_list);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, students);
-        studentList.setAdapter(adapter);
 
         Button newContactBtn = (Button) findViewById(R.id.student_new_btn);
         newContactBtn.setOnClickListener(new View.OnClickListener() {
@@ -44,4 +33,19 @@ public class StudentListActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        loadStudentList();
+    }
+
+    private void loadStudentList() {
+        StudentDao studentDao = new StudentDao(this);
+        List<Student> students = studentDao.findAllStudents();
+
+        ListView studentList = (ListView) findViewById(R.id.student_list);
+        ArrayAdapter<Student> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, students);
+        studentList.setAdapter(adapter);
+    }
 }

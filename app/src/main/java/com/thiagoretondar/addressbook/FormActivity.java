@@ -12,9 +12,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.thiagoretondar.addressbook.dao.StudentDao;
+import com.thiagoretondar.addressbook.model.Student;
+
 import java.util.zip.Inflater;
 
 public class FormActivity extends AppCompatActivity {
+
+    private FormHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,8 @@ public class FormActivity extends AppCompatActivity {
             }
         });
 
+        helper = new FormHelper(this);
+
     }
 
     @Override
@@ -46,7 +53,15 @@ public class FormActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_form_ok:
-                Toast.makeText(FormActivity.this, "Save Button Clicked", Toast.LENGTH_SHORT).show();
+
+                Student student = helper.getStudent();
+                StudentDao studentDao = new StudentDao(this);
+                studentDao.insert(student);
+                studentDao.close();
+
+                Toast.makeText(FormActivity.this, "Student " + student.getFirstName() + " saved",
+                        Toast.LENGTH_SHORT).show();
+
                 finish();
                 break;
         }
