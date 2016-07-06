@@ -18,6 +18,8 @@ public class FormHelper {
     private final EditText websiteField;
     private final RatingBar ratingField;
 
+    private Student student;
+
     public FormHelper(FormActivity activity) {
         firstNameField = (EditText) activity.findViewById(R.id.form_firstname);
         lastNameField = (EditText) activity.findViewById(R.id.form_lastname);
@@ -26,10 +28,10 @@ public class FormHelper {
         phoneField = (EditText) activity.findViewById(R.id.form_phone);
         websiteField = (EditText) activity.findViewById(R.id.form_website);
         ratingField = (RatingBar) activity.findViewById(R.id.form_rating);
+        student = new Student();
     }
 
     public Student getStudent() {
-        Student student = new Student();
         student.setFirstName(firstNameField.getText().toString());
         student.setLastName(lastNameField.getText().toString());
         student.setNickname(nicknameField.getText().toString());
@@ -38,5 +40,18 @@ public class FormHelper {
         student.setWebsite(websiteField.getText().toString());
         student.setRate(Double.valueOf(ratingField.getRating()));
         return student;
+    }
+
+    public void setForm(Student studentForm) {
+
+        firstNameField.setText(studentForm.getFirstName());
+        lastNameField.setText(studentForm.getLastName());
+        nicknameField.setText(studentForm.getNickname());
+        addressField.setText(studentForm.getAddress());
+        phoneField.setText(studentForm.getPhone());
+        websiteField.setText(studentForm.getWebsite());
+        ratingField.setProgress(studentForm.getRate().intValue());
+
+        student = studentForm;
     }
 }

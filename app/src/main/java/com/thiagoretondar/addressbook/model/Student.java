@@ -1,9 +1,11 @@
 package com.thiagoretondar.addressbook.model;
 
+import java.io.Serializable;
+
 /**
  * Created by thiagoretondar on 7/4/16.
  */
-public class Student {
+public class Student implements Serializable {
 
     private Long id;
 

@@ -1,5 +1,6 @@
 package com.thiagoretondar.addressbook;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.thiagoretondar.addressbook.dao.StudentDao;
 import com.thiagoretondar.addressbook.model.Student;
 
+import java.io.Serializable;
 import java.util.zip.Inflater;
 
 public class FormActivity extends AppCompatActivity {
@@ -38,6 +40,13 @@ public class FormActivity extends AppCompatActivity {
         });
 
         helper = new FormHelper(this);
+
+        Intent intent = getIntent();
+        Student student = (Student) intent.getSerializableExtra("student");
+        if (student != null) {
+            helper.setForm(student);
+        }
+
 
     }
 
