@@ -50,7 +50,7 @@ public class FormHelper {
         addressField.setText(studentForm.getAddress());
         phoneField.setText(studentForm.getPhone());
         websiteField.setText(studentForm.getWebsite());
-        ratingField.setProgress(studentForm.getRate().intValue());
+        ratingField.setRating(Float.valueOf(studentForm.getRate().toString()));
 
         student = studentForm;
     }

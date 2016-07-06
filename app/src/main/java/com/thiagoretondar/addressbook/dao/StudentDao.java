@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.NonNull;
 
 import com.thiagoretondar.addressbook.model.Student;
 
@@ -45,14 +46,7 @@ public class StudentDao extends SQLiteOpenHelper {
     public void insert(Student student) {
         SQLiteDatabase db = getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put("firstName", student.getFirstName());
-        values.put("lastName", student.getLastName());
-        values.put("nickName", student.getNickname());
-        values.put("address", student.getAddress());
-        values.put("phone", student.getPhone());
-        values.put("website", student.getWebsite());
-        values.put("rate", student.getRate());
+        ContentValues values = getContentValuesStudent(student);
 
         db.insert("students", null, values);
     }
@@ -87,5 +81,25 @@ public class StudentDao extends SQLiteOpenHelper {
 
         String[] params = {student.getId().toString()};
         db.delete("students", "id = ?", params);
+    }
+
+    public void update(Student student) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        String[] params = {student.getId().toString()};
+        db.update("students",getContentValuesStudent(student), "id = ?", params);
+    }
+
+    @NonNull
+    private ContentValues getContentValuesStudent(Student student) {
+        ContentValues values = new ContentValues();
+        values.put("firstName", student.getFirstName());
+        values.put("lastName", student.getLastName());
+        values.put("nickName", student.getNickname());
+        values.put("address", student.getAddress());
+        values.put("phone", student.getPhone());
+        values.put("website", student.getWebsite());
+        values.put("rate", student.getRate());
+        return values;
     }
 }
